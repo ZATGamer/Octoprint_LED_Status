@@ -26,7 +26,7 @@ def the_hunter():
             base_url = 'http://{}:7070/find_me'.format(test_ip)
             try:
                 print("Trying {}".format(test_ip))
-                r = requests.get(base_url, timeout=.25)
+                r = requests.get(base_url, timeout=.125)
                 if r.status_code == 200:
                     if r.text == "FOUND ME!":
                         print("Found It")
