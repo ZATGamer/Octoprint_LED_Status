@@ -9,7 +9,10 @@ def the_hunter():
     # Also assuming you mapped it to port 7070.
 
     # Get local IP
-    local_ip = socket.gethostbyname(socket.gethostname())
+    #local_ip = socket.gethostbyname(socket.gethostname())
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.connect(("1.1.1.1", 80))
+    local_ip = s.getsockname()[0]
 
     #Now we will split the IP by octet and build our calls.
     local_octet = local_ip.split('.')
