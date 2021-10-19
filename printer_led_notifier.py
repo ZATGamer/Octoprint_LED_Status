@@ -33,6 +33,12 @@ def start_up():
     for led in leds:
         GPIO.output(led, GPIO.LOW)
 
+    GPIO.output(red, GPIO.HIGH)
+    GPIO.output(green, GPIO.HIGH)
+    time.sleep(1)
+    GPIO.output(red, GPIO.LOW)
+    GPIO.output(green, GPIO.LOW)
+
 
 def led_on(led):
     GPIO.output(led, GPIO.HIGH)
