@@ -8,11 +8,11 @@ import first_start
 import datetime
 
 
-red = 5
-green = 6
-blue = 13
-http = 26
-leds = [red, green, blue, http]
+red = 13
+green = 19
+blue = 26
+white = 6
+leds = [red, green, blue, white]
 
 
 
@@ -75,7 +75,7 @@ def get_data(ip_address):
     try:
         data = requests.get("http://{}:7070/info".format(ip_address), timeout=2).text
         print(data)
-        led_on(http)
+        led_on(white)
         data = json.loads(data)
         stalled = False
         printing = False
@@ -110,7 +110,7 @@ def get_data(ip_address):
 
     except requests.exceptions.ConnectionError:
         print("HTTP Fail")
-        led_off(http)
+        led_off(white)
 
 
 def get_config():
