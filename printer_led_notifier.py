@@ -75,7 +75,7 @@ def get_data(ip_address):
     try:
         data = requests.get("http://{}:7070/info".format(ip_address), timeout=2).text
         print(data)
-        led_on(white)
+        led_off(white)
         data = json.loads(data)
         stalled = False
         printing = False
@@ -110,7 +110,7 @@ def get_data(ip_address):
 
     except requests.exceptions.ConnectionError:
         print("HTTP Fail")
-        led_off(white)
+        led_on(white)
 
 
 def get_config():
