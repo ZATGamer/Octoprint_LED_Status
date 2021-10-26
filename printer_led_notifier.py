@@ -145,7 +145,7 @@ if __name__ == '__main__':
 
     while(True):
         #print("Running Loop")
-        if last_run + datetime.timedelta(seconds=10) <= datetime.datetime.now():
+        if last_run + datetime.timedelta(seconds=5) <= datetime.datetime.now():
             print("Running Update")
             get_data(ip_address)
             last_run = datetime.datetime.now()
