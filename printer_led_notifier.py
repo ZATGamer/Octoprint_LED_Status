@@ -8,12 +8,11 @@ import first_start
 import datetime
 
 
-red = 13
-green = 19
 blue = 26
+green = 19
+red = 13
 white = 6
-leds = [red, green, blue, white]
-
+leds = [blue, green, red, white]
 
 
 def start_up():
@@ -43,8 +42,10 @@ def start_up():
 def led_on(led):
     GPIO.output(led, GPIO.HIGH)
 
+
 def led_off(led):
     GPIO.output(led, GPIO.LOW)
+
 
 def led_blink(led, last_blink):
     if last_blink + datetime.timedelta(seconds=1) < datetime.datetime.now():
@@ -57,6 +58,16 @@ def led_blink(led, last_blink):
             #GPIO.setup(led, GPIO.OUT)
             led_on(led)
     return last_blink
+
+
+def all_led_on():
+    for led in leds:
+        led_on(led)
+
+
+def all_led_off():
+    for led in leds:
+        led_off(led)
 
 
 def http_fail():
@@ -110,6 +121,7 @@ def get_data(ip_address):
 
     except requests.exceptions.ConnectionError:
         print("HTTP Fail")
+        all_led_off()
         led_on(white)
 
 
