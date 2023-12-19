@@ -123,6 +123,10 @@ def get_data(ip_address):
         print("HTTP Fail")
         all_led_off()
         led_on(white)
+    except requests.exceptions.ReadTimeout:
+        print("Timeout")
+        all_led_off()
+        led_on(white)
 
 
 def get_config():
