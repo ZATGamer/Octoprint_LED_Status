@@ -82,7 +82,7 @@ def http_fail():
         x += 1
 
 
-def get_data(ip_address):
+def get_data(ip_address, http_fail_count):
     try:
         data = requests.get("http://{}:7070/info".format(ip_address), timeout=2).text
         print(data)
@@ -119,14 +119,20 @@ def get_data(ip_address):
         else:
             led_off(blue)
 
+        http_fail_count = 0
+
     except requests.exceptions.ConnectionError:
         print("HTTP Fail")
-        all_led_off()
-        led_on(white)
+        http_fail_count += 1
+        if http_fail_count > 5:
+            all_led_off()
+            led_on(white)
     except requests.exceptions.ReadTimeout:
         print("Timeout")
-        all_led_off()
-        led_on(white)
+        http_fail_count += 1
+        if http_fail_count > 5:
+            all_led_off()
+            led_on(white)
 
 
 def get_config():
@@ -146,6 +152,7 @@ if __name__ == '__main__':
     last_run = datetime.datetime.now() - datetime.timedelta(seconds=10)
     start_up()
     ip_address = get_config()
+    http_fail_count = 0
 
     while(True):
         #print("Running Loop")
