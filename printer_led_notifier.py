@@ -158,7 +158,7 @@ if __name__ == '__main__':
         #print("Running Loop")
         if last_run + datetime.timedelta(seconds=5) <= datetime.datetime.now():
             print("Running Update")
-            get_data(ip_address)
+            get_data(ip_address, http_fail_count)
             last_run = datetime.datetime.now()
         time.sleep(.25)
         #last_blink = led_blink(green, last_blink)
