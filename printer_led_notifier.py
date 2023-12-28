@@ -96,7 +96,7 @@ def get_data(ip_address, http_fail_count):
             printer_status = thing[0]
             stalled_flag = thing[7]
             #print(stalled)
-            if printer_status.lower() == 'operational':
+            if printer_status.lower() == 'operational' or printer_status.lower() == 'idle':
                 idle = True
             if printer_status.lower() == 'printing':
                 printing = True
